@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
       btn.textContent = 'Sending...';
       status.style.color = '';
       status.textContent = '';
-      fetch('https://formsubmit.co/ajax/sales1@vertextech-industrial.com', {
+      fetch('https://formsubmit.co/ajax/99676744cc66e7bae40a14c0b2cf1fff', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(data)
