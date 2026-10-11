@@ -14,10 +14,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var form = document.querySelector('form.contact-form');
   if (form) {
+    var status = form.querySelector('.form-status');
+    var btn = form.querySelector('button[type="submit"]');
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      form.reset();
-      alert('Thanks — your message has been received. We will get back to you shortly.');
+      var data = {};
+      new FormData(form).forEach(function (v, k) { data[k] = v; });
+      if (data._honey) return;
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      status.style.color = '';
+      status.textContent = '';
+      fetch('https://formsubmit.co/ajax/sales1@vertextech-industrial.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(function (r) { return r.json().then(function (j) { if (!r.ok || j.success === 'false' || j.success === false) throw new Error(j.message || 'Send failed'); return j; }); })
+        .then(function () {
+          form.reset();
+          status.style.color = '#1a7f37';
+          status.textContent = 'Thank you! Your message has been sent. We will get back to you within one business day.';
+        })
+        .catch(function () {
+          status.style.color = '#b42318';
+          status.innerHTML = 'Sorry, the message could not be sent. Please email us directly at <a href="mailto:sales1@vertextech-industrial.com">sales1@vertextech-industrial.com</a>.';
+        })
+        .then(function () { btn.disabled = false; btn.textContent = 'Send Message'; });
     });
   }
 });

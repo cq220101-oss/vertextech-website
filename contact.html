@@ -60,30 +60,33 @@
       </div>
     </div>
 
-    <form class="contact-form">
+    <form class="contact-form" action="https://formsubmit.co/sales1@vertextech-industrial.com" method="POST">
+      <input type="hidden" name="_subject" value="New inquiry from vertextech-industrial.com">
+      <input type="hidden" name="_template" value="table">
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
       <div class="form-row">
         <div class="field">
           <label for="name">Full name</label>
-          <input id="name" type="text" required>
+          <input id="name" name="name" type="text" required>
         </div>
         <div class="field">
           <label for="company">Company</label>
-          <input id="company" type="text" required>
+          <input id="company" name="company" type="text" required>
         </div>
       </div>
       <div class="form-row">
         <div class="field">
           <label for="email">Work email</label>
-          <input id="email" type="email" required>
+          <input id="email" name="email" type="email" required>
         </div>
         <div class="field">
           <label for="phone">Phone</label>
-          <input id="phone" type="tel">
+          <input id="phone" name="phone" type="tel">
         </div>
       </div>
       <div class="field">
         <label for="topic">What do you need?</label>
-        <select id="topic">
+        <select id="topic" name="topic">
           <option>Mechanical Components</option>
           <option>Industrial Assemblies</option>
           <option>MRO Supplies</option>
@@ -93,9 +96,10 @@
       </div>
       <div class="field">
         <label for="message">Message</label>
-        <textarea id="message" placeholder="Quantity, material, drawing number, target delivery date..."></textarea>
+        <textarea id="message" name="message" placeholder="Quantity, material, drawing number, target delivery date..."></textarea>
       </div>
       <button class="btn btn-navy" type="submit" style="align-self:flex-start;">Send Message</button>
+      <p class="form-status" role="status" aria-live="polite" style="margin:0;"></p>
     </form>
   </div>
 </section>
