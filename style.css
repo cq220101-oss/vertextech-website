@@ -265,11 +265,13 @@ footer{background:var(--navy-deep); color:#AEBBCC; padding:56px 32px 0;}
 .foot-logo .logo-mark span{font-size:14px;}
 .foot-logo .logo-text{color:var(--white); font-size:15px;}
 .foot-tagline{font-size:13.5px; color:#AEBBCC; max-width:32ch;}
+.social-links{display:flex; gap:8px;}
 .social-icon{
   width:32px; height:32px; background:rgba(255,255,255,.08);
   border-radius:5px; display:flex; align-items:center; justify-content:center;
 }
 .social-icon svg{width:16px; height:16px; fill:var(--white);}
+.social-icon:hover{background:rgba(255,255,255,.18);}
 .copyright{
   border-top:1px solid rgba(255,255,255,.08);
   text-align:center; padding:18px 0; font-size:12.5px; color:#8493A8;
