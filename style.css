@@ -252,7 +252,33 @@ label{font-size:13px; font-weight:600; color:#374151; margin-bottom:4px; display
 .field{display:flex; flex-direction:column;}
 .label-note{font-weight:400; color:#6B7280;}
 .field-hint{font-size:12.5px; color:#6B7280; margin:6px 0 0;}
-input[type=file]{padding:10px; background:var(--gray-bg); cursor:pointer;}
+/* drawing upload: drop zone + one row per file with its own progress bar */
+.dropzone{
+  position:relative; display:flex; align-items:center; justify-content:center; gap:10px; text-align:center;
+  padding:22px 16px; border:1.5px dashed #B8C2CF; border-radius:6px; background:var(--gray-bg);
+  color:#4B5563; font-size:14px; cursor:pointer; transition:border-color .15s, background .15s;
+}
+.dropzone svg{width:22px; height:22px; stroke:var(--navy); fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0;}
+.dropzone strong{color:var(--navy);}
+.dropzone:hover, .dropzone:focus-visible, .dropzone.over{border-color:var(--navy); background:#EEF2F7; outline:none;}
+.dropzone input[type=file]{position:absolute; width:1px; height:1px; opacity:0; pointer-events:none;}
+.file-list{list-style:none; margin:8px 0 0; padding:0; display:flex; flex-direction:column; gap:6px;}
+.file-list:empty{display:none;}
+.file-row{
+  display:grid; grid-template-columns:minmax(0,1fr) auto auto; align-items:center; gap:4px 12px;
+  padding:8px 10px 8px 12px; border:1px solid var(--border); border-radius:5px; background:var(--white); font-size:13.5px;
+}
+.file-name{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-weight:500; color:#1F2937;}
+.file-meta{font-size:12.5px; color:#6B7280; white-space:nowrap; font-variant-numeric:tabular-nums;}
+.file-remove{border:0; background:none; color:#6B7280; font-size:18px; line-height:1; padding:2px 6px; cursor:pointer; border-radius:4px;}
+.file-remove:hover{color:#b42318; background:#FEF3F2;}
+.file-bar{grid-column:1 / -1; height:4px; border-radius:2px; background:#E7EAEE; overflow:hidden;}
+.file-bar span{display:block; height:100%; width:0; background:var(--navy); transition:width .2s;}
+.file-row.done .file-bar span{background:#1a7f37;}
+.file-row.done .file-meta{color:#1a7f37;}
+.file-row.failed{border-color:#FDA29B;}
+.file-row.failed .file-bar span{background:#b42318;}
+.file-row.failed .file-meta{color:#b42318; white-space:normal;}
 
 /* ---------- footer ---------- */
 footer{background:var(--navy-deep); color:#AEBBCC; padding:56px 32px 0;}

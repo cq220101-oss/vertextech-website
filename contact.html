@@ -111,8 +111,13 @@
       </div>
       <div class="field">
         <label for="files">Drawings &amp; files <span class="label-note">(optional)</span></label>
-        <input id="files" name="files" type="file" multiple accept=".pdf,.step,.stp,.igs,.iges,.x_t,.sldprt,.dwg,.dxf,.xlsx,.xlsm,.xls,.csv,.png,.jpg,.jpeg,.zip,.7z,.rar,.docx">
-        <p class="field-hint">PDF, STEP, DWG, DXF, Excel, images or ZIP &middot; up to 10 files, 10 MB each, 20 MB total. Files are shared only with our sourcing team.</p>
+        <div class="dropzone" tabindex="0" role="button" aria-describedby="files-hint">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>
+          <span><strong>Drag &amp; drop files here</strong> or <u>browse</u></span>
+          <input id="files" type="file" multiple accept=".pdf,.step,.stp,.igs,.iges,.x_t,.sldprt,.dwg,.dxf,.xlsx,.xlsm,.xls,.csv,.png,.jpg,.jpeg,.zip,.7z,.rar,.docx">
+        </div>
+        <ul class="file-list" aria-live="polite"></ul>
+        <p class="field-hint" id="files-hint">PDF, STEP, DWG, DXF, Excel, images or ZIP &middot; up to 10 files, 10 MB each, 20 MB total. Files start uploading right away and are shared only with our sourcing team.</p>
       </div>
       <button class="btn btn-navy" type="submit" style="align-self:flex-start;">Send Message</button>
       <p class="form-status" role="status" aria-live="polite" style="margin:0;"></p>
