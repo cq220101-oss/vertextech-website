@@ -61,7 +61,7 @@
       </div>
     </div>
 
-    <form class="contact-form" action="https://formsubmit.co/99676744cc66e7bae40a14c0b2cf1fff" method="POST">
+    <form class="contact-form" action="https://formsubmit.co/99676744cc66e7bae40a14c0b2cf1fff" method="POST" enctype="multipart/form-data" data-portal="https://vtx-portal.onrender.com">
       <input type="hidden" name="_subject" value="New inquiry from vertextech-industrial.com">
       <input type="hidden" name="_template" value="table">
       <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
@@ -95,9 +95,24 @@
           <option>Something else</option>
         </select>
       </div>
+      <div class="form-row">
+        <div class="field">
+          <label for="quantity">Quantity</label>
+          <input id="quantity" name="quantity" type="text" placeholder="e.g. 200 pcs, 4 prototypes">
+        </div>
+        <div class="field">
+          <label for="target_date">Target delivery date</label>
+          <input id="target_date" name="target_date" type="date">
+        </div>
+      </div>
       <div class="field">
         <label for="message">Message</label>
-        <textarea id="message" name="message" placeholder="Quantity, material, drawing number, target delivery date..."></textarea>
+        <textarea id="message" name="message" placeholder="Material, finish, drawing number, special requirements..."></textarea>
+      </div>
+      <div class="field">
+        <label for="files">Drawings &amp; files <span class="label-note">(optional)</span></label>
+        <input id="files" name="files" type="file" multiple accept=".pdf,.step,.stp,.igs,.iges,.x_t,.sldprt,.dwg,.dxf,.xlsx,.xlsm,.xls,.csv,.png,.jpg,.jpeg,.zip,.7z,.rar,.docx">
+        <p class="field-hint">PDF, STEP, DWG, DXF, Excel, images or ZIP &middot; up to 10 files, 10 MB each, 20 MB total. Files are shared only with our sourcing team.</p>
       </div>
       <button class="btn btn-navy" type="submit" style="align-self:flex-start;">Send Message</button>
       <p class="form-status" role="status" aria-live="polite" style="margin:0;"></p>
