@@ -410,3 +410,6 @@ section.key-stats{padding:0 32px; border-bottom:1px solid var(--border);}
 .check input{width:18px; height:18px; margin-top:3px; padding:0; flex-shrink:0; accent-color:var(--navy);}
 .dropzone.big{flex-direction:column; padding:30px 16px;}
 .dropzone.big svg{width:30px; height:30px;}
+.qc-grid.two{grid-template-columns:1fr 1fr;}
+@media (max-width:900px){.qc-grid.two{grid-template-columns:1fr;}}
+.hero .hero-ticks{margin-top:32px;}
