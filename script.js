@@ -157,6 +157,15 @@ document.addEventListener('DOMContentLoaded', function () {
               function (e) { if (timer) clearTimeout(timer); throw e; });
     }
 
+    // Google Ads: count a submitted quote request as a conversion.
+    function trackConversion() {
+      try {
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'conversion', { send_to: 'AW-18541039791/BpQOCN3NhqwdEK-hh4lF', value: 1.0, currency: 'USD' });
+        }
+      } catch (e) {}
+    }
+
     function resetAll() {
       form.reset();
       items.slice().forEach(function (it) { it.row.parentNode.removeChild(it.row); });
@@ -210,6 +219,7 @@ document.addEventListener('DOMContentLoaded', function () {
           mailCopy(data, 'Saved in the order system as ' + j.ref + (done.length ? ' with files: ' + names(done) : '') +
                    (failed.length ? '; NOT uploaded: ' + names(failed) : '')).catch(function () {});
           resetAll();
+          trackConversion();
           show('#1a7f37', 'Thank you! We received your request' + (done.length ? ' and ' + done.length + ' file(s)' : '') +
             '. Your reference is <strong>' + esc(j.ref) + '</strong>. We will get back to you within one business day.' + askEmail);
         }).catch(function (err) {
@@ -220,6 +230,7 @@ document.addEventListener('DOMContentLoaded', function () {
                           (all.length ? '; files chosen: ' + all.join(', ') : ''))
             .then(function () {
               resetAll();
+              trackConversion();
               show('#1a7f37', 'Thank you! Your message has been sent. ' +
                 (all.length ? 'Our upload service is busy, so please email your drawings to <a href="mailto:sales1@vertextech-industrial.com">sales1@vertextech-industrial.com</a>. ' : '') +
                 'We will get back to you within one business day.');
