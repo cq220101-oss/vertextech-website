@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact - VertexTech Industrial</title>
-<meta name="description" content="Request a quote or talk to VertexTech Industrial's sourcing team about your mechanical components, assemblies, MRO, or automation parts needs.">
+<title>Request a Quote - VertexTech Industrial</title>
+<meta name="description" content="Upload your STEP, PDF or DWG drawings for a CNC machined parts quote. Reply within one business day; NDA available on request.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
@@ -32,14 +32,28 @@
 </header>
 
 <section class="page-banner">
-  <div class="breadcrumb"><a href="index.html">Home</a> / Contact</div>
-  <h1>Let's Talk Sourcing</h1>
-  <p>Send your drawing or tell us what you need — we'll follow up with next steps.</p>
+  <div class="breadcrumb"><a href="index.html">Home</a> / Request a Quote</div>
+  <h1>Upload Your Drawings for a Quote</h1>
+  <p>An engineer reviews every request personally &mdash; we&rsquo;ll get back to you within one business day.</p>
 </section>
 
 <section>
   <div class="contact-wrap">
+    <div>
     <div class="contact-info-card">
+      <h3>What happens next</h3>
+      <ol class="rfq-steps">
+        <li>We review your drawing &mdash; tolerances, material, finish</li>
+        <li>You get a reply within one business day, with questions if anything is unclear</li>
+        <li>Formal quotation with price, lead time and delivery terms</li>
+        <li>Parts made, inspected against your drawing and shipped with reports</li>
+      </ol>
+      <div class="rfq-secure">
+        <strong>Your drawings stay confidential</strong>
+        Files are shared only with our sourcing and engineering team. Need an NDA first? Tick the box in the form and we&rsquo;ll send one before reviewing your files.
+      </div>
+    </div>
+    <div class="contact-info-card" style="margin-top:20px;">
       <h3>Contact Information</h3>
       <div class="info-row">
         <div class="ico"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
@@ -62,45 +76,69 @@
         <div><strong>Already ordered?</strong><br><a href="https://vtx-portal.onrender.com/track" style="text-decoration:underline;font-weight:600">Track your order</a> with your PO number</div>
       </div>
     </div>
+    </div>
 
     <form class="contact-form" action="https://formsubmit.co/99676744cc66e7bae40a14c0b2cf1fff" method="POST" enctype="multipart/form-data" data-portal="https://vtx-portal.onrender.com">
       <input type="hidden" name="_subject" value="New inquiry from vertextech-industrial.com">
       <input type="hidden" name="_template" value="table">
       <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
-      <div class="form-row">
-        <div class="field">
-          <label for="name">Full name</label>
-          <input id="name" name="name" type="text" required>
-        </div>
-        <div class="field">
-          <label for="company">Company</label>
-          <input id="company" name="company" type="text" required>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="field">
-          <label for="email">Work email</label>
-          <input id="email" name="email" type="email" required>
-        </div>
-        <div class="field">
-          <label for="phone">Phone</label>
-          <input id="phone" name="phone" type="tel">
-        </div>
-      </div>
+
+      <h2 class="form-group-title">1. Drawings</h2>
       <div class="field">
-        <label for="topic">What do you need?</label>
-        <select id="topic" name="topic">
-          <option>Mechanical Components</option>
-          <option>Industrial Assemblies</option>
-          <option>MRO Supplies</option>
-          <option>Automation Components</option>
-          <option>Something else</option>
-        </select>
+        <label for="files">Drawings &amp; files <span class="label-note">(STEP + PDF gives the fastest, most accurate quote)</span></label>
+        <div class="dropzone big" tabindex="0" role="button" aria-describedby="files-hint">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>
+          <span><strong>Drag &amp; drop files here</strong> or <u>browse</u></span>
+          <input id="files" type="file" multiple accept=".pdf,.step,.stp,.igs,.iges,.x_t,.sldprt,.dwg,.dxf,.xlsx,.xlsm,.xls,.csv,.png,.jpg,.jpeg,.zip,.7z,.rar,.docx">
+        </div>
+        <ul class="file-list" aria-live="polite"></ul>
+        <p class="field-hint" id="files-hint">PDF, STEP, DWG, DXF, Excel, images or ZIP &middot; up to 10 files, 10 MB each, 20 MB total. Larger files? Email them to sales1@vertextech-industrial.com.</p>
       </div>
+
+      <h2 class="form-group-title">2. Requirements</h2>
       <div class="form-row">
+        <div class="field">
+          <label for="topic">Part type</label>
+          <select id="topic" name="topic">
+            <option>CNC Machined Parts</option>
+            <option>Fixtures &amp; Tooling</option>
+            <option>Industrial Assemblies</option>
+            <option>MRO Supplies</option>
+            <option>Automation Components</option>
+            <option>Something else</option>
+          </select>
+        </div>
         <div class="field">
           <label for="quantity">Quantity</label>
-          <input id="quantity" name="quantity" type="text" placeholder="e.g. 200 pcs, 4 prototypes">
+          <input id="quantity" name="quantity" type="text" placeholder="e.g. 10 / 100 / 1,000 pcs">
+        </div>
+      </div>
+      <div class="form-row three">
+        <div class="field">
+          <label for="rfq_material">Material</label>
+          <select id="rfq_material" name="rfq_material" data-label="Material">
+            <option>Per drawing</option>
+            <option>Aluminum</option>
+            <option>Stainless steel</option>
+            <option>Carbon / alloy steel</option>
+            <option>Tool steel</option>
+            <option>Brass / copper</option>
+            <option>Engineering plastic</option>
+            <option>Other (see notes)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="rfq_finish">Surface finish</label>
+          <select id="rfq_finish" name="rfq_finish" data-label="Surface finish">
+            <option>Per drawing</option>
+            <option>As machined</option>
+            <option>Anodizing (clear / black)</option>
+            <option>Hard anodizing</option>
+            <option>Zinc / nickel plating</option>
+            <option>Blackening</option>
+            <option>Powder coating / painting</option>
+            <option>Other (see notes)</option>
+          </select>
         </div>
         <div class="field">
           <label for="target_date">Target delivery date</label>
@@ -108,20 +146,47 @@
         </div>
       </div>
       <div class="field">
-        <label for="message">Message</label>
-        <textarea id="message" name="message" placeholder="Material, finish, drawing number, special requirements..."></textarea>
+        <label for="rfq_terms">Delivery terms</label>
+        <select id="rfq_terms" name="rfq_terms" data-label="Delivery terms">
+          <option>Not sure, please advise</option>
+          <option>DDP (delivered, duties paid)</option>
+          <option>DAP (delivered, duties excluded)</option>
+          <option>FOB / EXW</option>
+        </select>
       </div>
       <div class="field">
-        <label for="files">Drawings &amp; files <span class="label-note">(optional)</span></label>
-        <div class="dropzone" tabindex="0" role="button" aria-describedby="files-hint">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>
-          <span><strong>Drag &amp; drop files here</strong> or <u>browse</u></span>
-          <input id="files" type="file" multiple accept=".pdf,.step,.stp,.igs,.iges,.x_t,.sldprt,.dwg,.dxf,.xlsx,.xlsm,.xls,.csv,.png,.jpg,.jpeg,.zip,.7z,.rar,.docx">
-        </div>
-        <ul class="file-list" aria-live="polite"></ul>
-        <p class="field-hint" id="files-hint">PDF, STEP, DWG, DXF, Excel, images or ZIP &middot; up to 10 files, 10 MB each, 20 MB total. Files start uploading right away and are shared only with our sourcing team.</p>
+        <label for="message">Notes</label>
+        <textarea id="message" name="message" placeholder="Drawing number and revision, critical features, inspection or certificate requirements, packaging, target price..."></textarea>
       </div>
-      <button class="btn btn-navy" type="submit" style="align-self:flex-start;">Send Message</button>
+
+      <h2 class="form-group-title">3. Your details</h2>
+      <div class="form-row">
+        <div class="field">
+          <label for="name">Full name</label>
+          <input id="name" name="name" type="text" required autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="company">Company</label>
+          <input id="company" name="company" type="text" required autocomplete="organization">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="field">
+          <label for="email">Work email</label>
+          <input id="email" name="email" type="email" required autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="phone">Phone</label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel">
+        </div>
+      </div>
+      <div class="field">
+        <label for="rfq_country">Country</label>
+        <input id="rfq_country" name="rfq_country" type="text" autocomplete="country-name" data-label="Country">
+      </div>
+      <label class="check"><input type="checkbox" name="rfq_nda" value="Yes, please send an NDA before reviewing the drawings" data-label="NDA requested"> <span>Please send me an NDA to sign before you review my drawings.</span></label>
+
+      <button class="btn btn-navy btn-lg" type="submit" style="align-self:flex-start;">Send Request</button>
       <p class="form-status" role="status" aria-live="polite" style="margin:0;"></p>
     </form>
   </div>

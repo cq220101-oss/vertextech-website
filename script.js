@@ -177,6 +177,18 @@ document.addEventListener('DOMContentLoaded', function () {
         var done = items.filter(function (x) { return x.state === 'done'; });
         var failed = items.filter(function (x) { return x.state === 'failed'; });
         var fd = new FormData(form);
+        // The order system stores a fixed set of fields, so the extra RFQ fields
+        // (material, finish, terms, country, NDA) travel at the top of the message.
+        var extras = [];
+        Array.prototype.forEach.call(form.querySelectorAll('[data-label]'), function (el) {
+          var v = (el.type === 'checkbox' ? (el.checked ? el.value : '') : el.value || '').trim();
+          if (v) extras.push(el.getAttribute('data-label') + ': ' + v);
+          if (el.name) fd.delete(el.name);
+        });
+        if (extras.length) {
+          var note = (fd.get('message') || '').trim();
+          fd.set('message', extras.join('\n') + (note ? '\n\n' + note : ''));
+        }
         fd.append('page', window.location.href.slice(0, 300));
         fd.append('upload_token', uploadToken);
         fd.append('file_ids', done.map(function (x) { return x.id; }).join(','));
@@ -217,7 +229,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }).then(function () { clearTimeout(slow); });
       }).then(function () {
         btn.disabled = false;
-        btn.textContent = 'Send Message';
+        btn.textContent = 'Send Request';
       });
     });
   }
