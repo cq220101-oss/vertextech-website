@@ -1,3 +1,16 @@
+// Google Ads: a click on any WhatsApp link counts as a "Contact" conversion.
+// WA_SEND_TO is the "send_to" value of the WhatsApp conversion action (Google Ads → Goals → Conversions).
+var WA_SEND_TO = '';
+document.addEventListener('click', function (e) {
+  var a = e.target.closest && e.target.closest('a[href*="wa.me/"], a[href*="api.whatsapp.com"], a[href^="whatsapp:"]');
+  if (!a || typeof window.gtag !== 'function') return;
+  try {
+    var page = location.pathname.replace(/^\/|\.html$/g, '') || 'index';
+    if (WA_SEND_TO) window.gtag('event', 'conversion', { send_to: WA_SEND_TO, value: 1.0, currency: 'USD', transport_type: 'beacon' });
+    window.gtag('event', 'whatsapp_click', { page: page, transport_type: 'beacon' });
+  } catch (err) {}
+}, true);
+
 document.addEventListener('DOMContentLoaded', function () {
   var yr = document.getElementById('yr');
   if (yr) yr.textContent = new Date().getFullYear();
