@@ -413,3 +413,12 @@ section.key-stats{padding:0 32px; border-bottom:1px solid var(--border);}
 .qc-grid.two{grid-template-columns:1fr 1fr;}
 @media (max-width:900px){.qc-grid.two{grid-template-columns:1fr;}}
 .hero .hero-ticks{margin-top:32px;}
+
+/* ---------- home: China + Mexico advantage ---------- */
+.advantage{background:var(--gray-bg); border-bottom:1px solid var(--border);}
+.adv-grid{max-width:1080px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+@media (max-width:900px){.adv-grid{grid-template-columns:1fr;}}
+.adv-card{background:#fff; border:1px solid var(--border); border-top:3px solid var(--navy); border-radius:6px; padding:28px 26px;}
+.adv-num{font-family:'Poppins',sans-serif; font-weight:700; font-size:24px; color:var(--navy); margin-bottom:10px;}
+.adv-card h3{font-size:17px; color:var(--navy); margin:0 0 8px;}
+.adv-card p{font-size:14.5px; color:var(--text-muted); margin:0;}
