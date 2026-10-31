@@ -422,3 +422,6 @@ section.key-stats{padding:0 32px; border-bottom:1px solid var(--border);}
 .adv-num{font-family:'Poppins',sans-serif; font-weight:700; font-size:24px; color:var(--navy); margin-bottom:10px;}
 .adv-card h3{font-size:17px; color:var(--navy); margin:0 0 8px;}
 .adv-card p{font-size:14.5px; color:var(--text-muted); margin:0;}
+
+a[href^="mailto:"]{text-decoration:underline; text-underline-offset:2px;}
+a[href^="mailto:"]:hover{opacity:.8;}
