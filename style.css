@@ -425,3 +425,14 @@ section.key-stats{padding:0 32px; border-bottom:1px solid var(--border);}
 
 a[href^="mailto:"]{text-decoration:underline; text-underline-offset:2px;}
 a[href^="mailto:"]:hover{opacity:.8;}
+
+/* Required form fields */
+.req{color:#d92d20; font-weight:700; margin-left:2px;}
+.req-legend{font-size:12.5px; font-weight:400; color:#6B7280; margin-left:10px;}
+
+/* Floating WhatsApp button */
+.wa-float{position:fixed; right:20px; bottom:20px; z-index:999; display:flex; align-items:center; gap:8px; height:56px; padding:0 18px 0 14px; border-radius:28px; background:#25D366; color:#fff; font-weight:600; font-size:15px; box-shadow:0 6px 18px rgba(0,0,0,.22); transition:transform .15s, box-shadow .15s;}
+.wa-float:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(0,0,0,.28);}
+.wa-float svg{width:28px; height:28px; fill:#fff; flex:none;}
+@media (max-width:640px){.wa-float{width:56px; padding:0; justify-content:center; right:16px; bottom:16px;} .wa-float .wa-label{display:none;}}
+@media print{.wa-float{display:none;}}
