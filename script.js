@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var portal = (form.getAttribute('data-portal') || '').replace(/\/$/, '');
     var MAIL_ONLY = 'https://formsubmit.co/ajax/99676744cc66e7bae40a14c0b2cf1fff';
     var MAX_FILES = 10, MAX_FILE = 10 * 1024 * 1024, MAX_TOTAL = 20 * 1024 * 1024;
+    var openedAt = Date.now(); // a person takes time to fill in the form; the order system drops sends under 3 seconds
     var TYPES = /\.(pdf|step|stp|igs|iges|x_t|sldprt|dwg|dxf|xlsx|xlsm|xls|csv|png|jpe?g|zip|7z|rar|docx)$/i;
 
     // The order system sleeps when idle; wake it while the visitor is still typing.
@@ -153,6 +154,7 @@ document.addEventListener('DOMContentLoaded', function () {
       Object.keys(data).forEach(function (k) { body[k] = data[k]; });
       body._subject = 'New inquiry from vertextech-industrial.com';
       body._template = 'table';
+      body._honey = '';
       body.system = note;
       return fetch(MAIL_ONLY, {
         method: 'POST',
@@ -188,7 +190,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      if (form._honey && form._honey.value) return;
+      if ((form._honey && form._honey.value) || (form.website && form.website.value)) return;
       btn.disabled = true;
       var waiting = items.filter(function (x) { return x.state === 'uploading'; });
       btn.textContent = waiting.length ? 'Finishing uploads...' : 'Sending...';
@@ -212,10 +214,11 @@ document.addEventListener('DOMContentLoaded', function () {
           fd.set('message', extras.join('\n') + (note ? '\n\n' + note : ''));
         }
         fd.append('page', window.location.href.slice(0, 300));
+        fd.append('elapsed_ms', String(Date.now() - openedAt));
         fd.append('upload_token', uploadToken);
         fd.append('file_ids', done.map(function (x) { return x.id; }).join(','));
         var data = {};
-        fd.forEach(function (v, k) { if (typeof v === 'string' && k.charAt(0) !== '_' && k !== 'upload_token' && k !== 'file_ids') data[k] = v; });
+        fd.forEach(function (v, k) { if (typeof v === 'string' && k.charAt(0) !== '_' && k !== 'upload_token' && k !== 'file_ids' && k !== 'website' && k !== 'elapsed_ms') data[k] = v; });
         var names = function (xs) { return xs.map(function (x) { return x.file.name; }).join(', '); };
         var slow = setTimeout(function () { show('', 'Still sending, this can take up to a minute...'); }, 8000);
         var askEmail = failed.length ? ' Some files could not be uploaded (' + esc(names(failed)) +
