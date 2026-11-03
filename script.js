@@ -11,6 +11,56 @@ document.addEventListener('click', function (e) {
   } catch (err) {}
 }, true);
 
+// ---------- UI text in the page language (internal notes to the order system stay English) ----------
+var I18N = {
+  en: {
+    uploadUnavailable: 'Upload unavailable, please email this file', uploading: 'Uploading ', processing: 'Processing...',
+    uploaded: 'Uploaded', uploadFailed: 'Upload failed, please email this file', badType: ': this file type is not accepted.',
+    tooBig: ' is larger than 10 MB. Please email it to us.', tooMany: 'Up to 10 files per request. Please email the rest.',
+    totalTooBig: ' would bring the total above 20 MB. Please email it to us.', waitingFile: 'Waiting...', remove: 'Remove',
+    finishing: 'Finishing uploads...', sending: 'Sending...', slow: 'Still sending, this can take up to a minute...',
+    someFailed: ' Some files could not be uploaded (', emailThem: '); please email them to ', checkForm: 'Please check the form.',
+    thanks: 'Thank you! We received your request', andFiles: ' and {n} file(s)', yourRef: '. Your reference is ',
+    reply: ' We will get back to you within one business day.', thanksMsg: 'Thank you! Your message has been sent. ',
+    busy: 'Our upload service is busy, so please email your drawings to ', sorry: 'Sorry, the message could not be sent. Please email us directly at '
+  },
+  es: {
+    uploadUnavailable: 'Carga no disponible, envíe este archivo por correo', uploading: 'Cargando ', processing: 'Procesando...',
+    uploaded: 'Cargado', uploadFailed: 'Error al cargar, envíe este archivo por correo', badType: ': este tipo de archivo no se acepta.',
+    tooBig: ' pesa más de 10 MB. Envíelo por correo.', tooMany: 'Máximo 10 archivos por solicitud. Envíe el resto por correo.',
+    totalTooBig: ' haría que el total supere 20 MB. Envíelo por correo.', waitingFile: 'En espera...', remove: 'Quitar',
+    finishing: 'Terminando cargas...', sending: 'Enviando...', slow: 'Seguimos enviando, puede tardar hasta un minuto...',
+    someFailed: ' Algunos archivos no se pudieron cargar (', emailThem: '); envíelos por correo a ', checkForm: 'Revise el formulario.',
+    thanks: '¡Gracias! Recibimos su solicitud', andFiles: ' y {n} archivo(s)', yourRef: '. Su número de referencia es ',
+    reply: ' Le responderemos en un día hábil.', thanksMsg: '¡Gracias! Su mensaje fue enviado. ',
+    busy: 'Nuestro servicio de carga está saturado; envíe sus planos por correo a ', sorry: 'No se pudo enviar el mensaje. Escríbanos directamente a '
+  },
+  de: {
+    uploadUnavailable: 'Upload nicht verfügbar, bitte senden Sie diese Datei per E-Mail', uploading: 'Wird hochgeladen ', processing: 'Wird verarbeitet...',
+    uploaded: 'Hochgeladen', uploadFailed: 'Upload fehlgeschlagen, bitte per E-Mail senden', badType: ': dieser Dateityp wird nicht akzeptiert.',
+    tooBig: ' ist größer als 10 MB. Bitte per E-Mail senden.', tooMany: 'Maximal 10 Dateien pro Anfrage. Bitte senden Sie den Rest per E-Mail.',
+    totalTooBig: ' würde die Gesamtgröße von 20 MB überschreiten. Bitte per E-Mail senden.', waitingFile: 'Wartet...', remove: 'Entfernen',
+    finishing: 'Uploads werden abgeschlossen...', sending: 'Wird gesendet...', slow: 'Wird noch gesendet, das kann bis zu einer Minute dauern...',
+    someFailed: ' Einige Dateien konnten nicht hochgeladen werden (', emailThem: '); bitte senden Sie sie per E-Mail an ', checkForm: 'Bitte prüfen Sie das Formular.',
+    thanks: 'Vielen Dank! Wir haben Ihre Anfrage erhalten', andFiles: ' sowie {n} Datei(en)', yourRef: '. Ihre Referenznummer lautet ',
+    reply: ' Wir melden uns innerhalb eines Werktages.', thanksMsg: 'Vielen Dank! Ihre Nachricht wurde gesendet. ',
+    busy: 'Unser Upload-Dienst ist ausgelastet, bitte senden Sie Ihre Zeichnungen per E-Mail an ', sorry: 'Die Nachricht konnte leider nicht gesendet werden. Bitte schreiben Sie uns direkt an '
+  },
+  fr: {
+    uploadUnavailable: 'Envoi indisponible, merci d’envoyer ce fichier par e-mail', uploading: 'Envoi ', processing: 'Traitement...',
+    uploaded: 'Envoyé', uploadFailed: 'Échec de l’envoi, merci d’envoyer ce fichier par e-mail', badType: ' : ce type de fichier n’est pas accepté.',
+    tooBig: ' dépasse 10 Mo. Merci de nous l’envoyer par e-mail.', tooMany: '10 fichiers maximum par demande. Merci d’envoyer les autres par e-mail.',
+    totalTooBig: ' ferait dépasser le total de 20 Mo. Merci de nous l’envoyer par e-mail.', waitingFile: 'En attente...', remove: 'Retirer',
+    finishing: 'Finalisation des envois...', sending: 'Envoi en cours...', slow: 'Envoi toujours en cours, cela peut prendre jusqu’à une minute...',
+    someFailed: ' Certains fichiers n’ont pas pu être envoyés (', emailThem: ') ; merci de les envoyer par e-mail à ', checkForm: 'Merci de vérifier le formulaire.',
+    thanks: 'Merci ! Nous avons bien reçu votre demande', andFiles: ' et {n} fichier(s)', yourRef: '. Votre référence est ',
+    reply: ' Nous vous répondrons sous un jour ouvré.', thanksMsg: 'Merci ! Votre message a été envoyé. ',
+    busy: 'Notre service d’envoi est saturé, merci d’envoyer vos plans par e-mail à ', sorry: 'Désolé, le message n’a pas pu être envoyé. Écrivez-nous directement à '
+  }
+};
+var LANG = (document.documentElement.lang || 'en').slice(0, 2).toLowerCase();
+function T(k) { var d = I18N[LANG] || I18N.en; return d[k] != null ? d[k] : I18N.en[k]; }
+
 document.addEventListener('DOMContentLoaded', function () {
   var yr = document.getElementById('yr');
   if (yr) yr.textContent = new Date().getFullYear();
@@ -29,6 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (form) {
     var status = form.querySelector('.form-status');
     var btn = form.querySelector('button[type="submit"]');
+    var btnLabel = btn ? btn.textContent : '';
     var portal = (form.getAttribute('data-portal') || '').replace(/\/$/, '');
     var MAIL_ONLY = 'https://formsubmit.co/ajax/99676744cc66e7bae40a14c0b2cf1fff';
     var MAX_FILES = 10, MAX_FILE = 10 * 1024 * 1024, MAX_TOTAL = 20 * 1024 * 1024;
@@ -71,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function upload(it) {
       it.promise = new Promise(function (resolve) {
-        if (!portal) { setRow(it, 'failed', 'Upload unavailable, please email this file', 100); return resolve(); }
+        if (!portal) { setRow(it, 'failed', T('uploadUnavailable'), 100); return resolve(); }
         var fd = new FormData();
         fd.append('token', uploadToken);
         fd.append('file', it.file, it.file.name);
@@ -82,16 +133,16 @@ document.addEventListener('DOMContentLoaded', function () {
         xhr.upload.onprogress = function (e) {
           if (!e.lengthComputable) return;
           var pct = Math.round(e.loaded / e.total * 100);
-          setRow(it, 'uploading', pct < 100 ? 'Uploading ' + pct + '%' : 'Processing...', Math.min(pct, 98));
+          setRow(it, 'uploading', pct < 100 ? T('uploading') + pct + '%' : T('processing'), Math.min(pct, 98));
         };
         xhr.onload = function () {
           var j = {};
           try { j = JSON.parse(xhr.responseText); } catch (err) {}
-          if (xhr.status === 200 && j.ok) { it.id = j.id; setRow(it, 'done', kb(it.file.size) + ' · Uploaded', 100); }
-          else setRow(it, 'failed', j.error || 'Upload failed, please email this file', 100);
+          if (xhr.status === 200 && j.ok) { it.id = j.id; setRow(it, 'done', kb(it.file.size) + ' · ' + T('uploaded'), 100); }
+          else setRow(it, 'failed', j.error || T('uploadFailed'), 100);
           resolve();
         };
-        xhr.onerror = xhr.ontimeout = function () { setRow(it, 'failed', 'Upload failed, please email this file', 100); resolve(); };
+        xhr.onerror = xhr.ontimeout = function () { setRow(it, 'failed', T('uploadFailed'), 100); resolve(); };
         xhr.onabort = function () { resolve(); };
         xhr.send(fd);
       });
@@ -113,20 +164,20 @@ document.addEventListener('DOMContentLoaded', function () {
         var kept = items.filter(function (x) { return x.state !== 'failed'; });
         var total = kept.reduce(function (n, x) { return n + x.file.size; }, 0);
         if (kept.some(function (x) { return x.file.name === file.name && x.file.size === file.size; })) return;
-        if (!TYPES.test(file.name)) { problems.push(esc(file.name) + ': this file type is not accepted.'); return; }
-        if (file.size > MAX_FILE) { problems.push(esc(file.name) + ' is larger than 10 MB. Please email it to us.'); return; }
-        if (kept.length >= MAX_FILES) { problems.push('Up to 10 files per request. Please email the rest.'); return; }
-        if (total + file.size > MAX_TOTAL) { problems.push(esc(file.name) + ' would bring the total above 20 MB. Please email it to us.'); return; }
+        if (!TYPES.test(file.name)) { problems.push(esc(file.name) + T('badType')); return; }
+        if (file.size > MAX_FILE) { problems.push(esc(file.name) + T('tooBig')); return; }
+        if (kept.length >= MAX_FILES) { problems.push(T('tooMany')); return; }
+        if (total + file.size > MAX_TOTAL) { problems.push(esc(file.name) + T('totalTooBig')); return; }
         var row = document.createElement('li');
         row.innerHTML = '<span class="file-name"></span><span class="file-meta"></span>' +
-          '<button type="button" class="file-remove" aria-label="Remove">×</button><div class="file-bar"><span></span></div>';
+          '<button type="button" class="file-remove" aria-label="' + T('remove') + '">×</button><div class="file-bar"><span></span></div>';
         row.querySelector('.file-name').textContent = file.name;
         row.querySelector('.file-name').title = file.name;
         list.appendChild(row);
         var it = { file: file, row: row };
         items.push(it);
         row.querySelector('.file-remove').addEventListener('click', function () { remove(it); });
-        setRow(it, 'uploading', kb(file.size) + ' · Waiting...', 0);
+        setRow(it, 'uploading', kb(file.size) + ' · ' + T('waitingFile'), 0);
         upload(it);
       });
       show(problems.length ? '#b42318' : '', problems.join('<br>'));
@@ -193,11 +244,11 @@ document.addEventListener('DOMContentLoaded', function () {
       if ((form._honey && form._honey.value) || (form.website && form.website.value)) return;
       btn.disabled = true;
       var waiting = items.filter(function (x) { return x.state === 'uploading'; });
-      btn.textContent = waiting.length ? 'Finishing uploads...' : 'Sending...';
+      btn.textContent = waiting.length ? T('finishing') : T('sending');
       show('', '');
 
       Promise.all(items.map(function (x) { return x.promise; })).then(function () {
-        btn.textContent = 'Sending...';
+        btn.textContent = T('sending');
         var done = items.filter(function (x) { return x.state === 'done'; });
         var failed = items.filter(function (x) { return x.state === 'failed'; });
         var fd = new FormData(form);
@@ -220,15 +271,15 @@ document.addEventListener('DOMContentLoaded', function () {
         var data = {};
         fd.forEach(function (v, k) { if (typeof v === 'string' && k.charAt(0) !== '_' && k !== 'upload_token' && k !== 'file_ids' && k !== 'website' && k !== 'elapsed_ms') data[k] = v; });
         var names = function (xs) { return xs.map(function (x) { return x.file.name; }).join(', '); };
-        var slow = setTimeout(function () { show('', 'Still sending, this can take up to a minute...'); }, 8000);
-        var askEmail = failed.length ? ' Some files could not be uploaded (' + esc(names(failed)) +
-          '); please email them to <a href="mailto:sales1@vertextech-industrial.com">sales1@vertextech-industrial.com</a>.' : '';
+        var slow = setTimeout(function () { show('', T('slow')); }, 8000);
+        var askEmail = failed.length ? T('someFailed') + esc(names(failed)) +
+          T('emailThem') + '<a href="mailto:sales1@vertextech-industrial.com">sales1@vertextech-industrial.com</a>.' : '';
 
         var sent = portal ? toPortal(fd) : Promise.reject(new Error('no portal'));
         return sent.then(function (j) {
           if (!j.ok) {
             if (j.status === 400 || j.status === 413 || j.status === 415) {
-              var err = new Error(j.error || 'Please check the form.'); err.user = true; throw err;
+              var err = new Error(j.error || T('checkForm')); err.user = true; throw err;
             }
             throw new Error(j.error || 'portal');
           }
@@ -236,8 +287,8 @@ document.addEventListener('DOMContentLoaded', function () {
                    (failed.length ? '; NOT uploaded: ' + names(failed) : '')).catch(function () {});
           resetAll();
           trackConversion();
-          show('#1a7f37', 'Thank you! We received your request' + (done.length ? ' and ' + done.length + ' file(s)' : '') +
-            '. Your reference is <strong>' + esc(j.ref) + '</strong>. We will get back to you within one business day.' + askEmail);
+          show('#1a7f37', T('thanks') + (done.length ? T('andFiles').replace('{n}', done.length) : '') +
+            T('yourRef') + '<strong>' + esc(j.ref) + '</strong>.' + T('reply') + askEmail);
         }).catch(function (err) {
           if (err && err.user) { show('#b42318', esc(err.message)); return; }
           // The order system could not be reached: still deliver the message by email.
@@ -247,16 +298,16 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(function () {
               resetAll();
               trackConversion();
-              show('#1a7f37', 'Thank you! Your message has been sent. ' +
-                (all.length ? 'Our upload service is busy, so please email your drawings to <a href="mailto:sales1@vertextech-industrial.com">sales1@vertextech-industrial.com</a>. ' : '') +
-                'We will get back to you within one business day.');
+              show('#1a7f37', T('thanksMsg') +
+                (all.length ? T('busy') + '<a href="mailto:sales1@vertextech-industrial.com">sales1@vertextech-industrial.com</a>. ' : '') +
+                T('reply').trim());
             }, function () {
-              show('#b42318', 'Sorry, the message could not be sent. Please email us directly at <a href="mailto:sales1@vertextech-industrial.com">sales1@vertextech-industrial.com</a>.');
+              show('#b42318', T('sorry') + '<a href="mailto:sales1@vertextech-industrial.com">sales1@vertextech-industrial.com</a>.');
             });
         }).then(function () { clearTimeout(slow); });
       }).then(function () {
         btn.disabled = false;
-        btn.textContent = 'Send Request';
+        btn.textContent = btnLabel;
       });
     });
   }
