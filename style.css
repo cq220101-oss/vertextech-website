@@ -471,7 +471,10 @@ a[href^="mailto:"]:hover{opacity:.8;}
 .lang-switch a{padding:4px 6px; border-radius:4px; color:var(--text-muted);}
 .lang-switch a:hover{color:var(--navy); background:#F2F4F7;}
 .lang-switch a.active{color:var(--navy); background:#E8EDF5;}
-@media (max-width:1240px){ nav.main-links{gap:22px;} }
-@media (max-width:1080px){ nav.main-links{gap:16px; font-size:14px;} }
+nav.main-links a{white-space:nowrap;}
+nav.main-links{margin-left:28px;}
+.logo{flex-shrink:0;}
+@media (max-width:1280px){ header{padding:16px 20px;} nav.main-links{gap:20px; margin-left:20px;} }
+@media (max-width:1180px){ header .btn-navy{display:none;} nav.main-links{gap:16px; font-size:14px;} }
 @media (max-width:900px){ .lang-switch{margin-right:6px; padding-left:0;} }
 @media (max-width:420px){ .lang-switch{font-size:11.5px;} .lang-switch a{padding:3px 4px;} }
