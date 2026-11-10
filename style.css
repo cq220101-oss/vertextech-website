@@ -511,3 +511,13 @@ nav.main-links{gap:22px;}
 .guide-tip h2{margin-top:16px;}
 .guide-back{margin:32px 0 0;}
 .guide-back a{color:var(--navy); font-weight:600;}
+/* Parts photo gallery (case studies) */
+.gallery-section{padding-bottom:0;}
+.gallery-grid{max-width:1080px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px;}
+.gallery-item{margin:0; background:#0B0B0D; border-radius:6px; overflow:hidden; border:1px solid var(--border);}
+.gallery-item a{display:block; aspect-ratio:1/1; overflow:hidden;}
+.gallery-item img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .35s ease;}
+.gallery-item a:hover img{transform:scale(1.04);}
+.gallery-item figcaption{background:var(--white); padding:14px 16px;}
+.gallery-item figcaption strong{display:block; font-size:14.5px; color:var(--navy);}
+.gallery-item figcaption span{font-size:13px; color:var(--text-muted);}
