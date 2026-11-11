@@ -414,7 +414,7 @@ section.key-stats{padding:0 32px; border-bottom:1px solid var(--border);}
 @media (max-width:900px){.qc-grid.two{grid-template-columns:1fr;}}
 .hero .hero-ticks{margin-top:32px;}
 
-/* ---------- home: made in China, delivered worldwide ---------- */
+/* ---------- home: advantages ---------- */
 .advantage{background:var(--gray-bg); border-bottom:1px solid var(--border);}
 .adv-grid{max-width:1080px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
 @media (max-width:900px){.adv-grid{grid-template-columns:1fr;}}
